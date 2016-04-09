@@ -1,0 +1,75 @@
+﻿@model DreamJob.ViewModels.HomeViewModel
+@{
+    Layout = null;
+    <script src="~/scripts/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/scripts/sorttable.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#search').keyup(function () {
+            searchTable($(this).val());
+        });
+    });
+    function searchTable(inputVal) {
+        var table = $('#tblData');
+        table.find('tr').each(function (index, row) {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0) {
+                var found = false;
+                allCells.each(function (index, td) {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text())) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true) $(row).show(); else $(row).hide();
+            }
+        });
+    }
+    </script>
+    
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Titre</title>
+</head>
+<body onload="_l='t';">
+    @Html.Action("Index", "Login")
+    <div id="articles">
+        <label for="search"><strong>Entrez le mot clé pour rechercher </strong></label><input type="text" id="search"><label> e.g. ingénieur, info, etc</label>
+
+        <table id="tblData"class="sortable">
+                <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Up</th>
+                    <th></th>
+                    <th>Down</th>
+                    <th></th>
+                </tr>
+                @{
+                    foreach (var article in Model.ListeDesArticles)
+                    {
+                        <tr>
+                            <td> @article.created.ToString("dd/MM/yyyy")</td>
+                            <td><a href=@article.link target="_blank">@article.title</a></td>
+                            <td> @article.up_votes</td>
+                            <td> <button type="button" name="up" value="Up vote" onclick="location.href='@Url.Action("UpVote", "Home")?id=@article.id'" />Up</td>
+                            <td> @article.down_votes</td>
+                            <td> <button type="button" name="down" value="Down vote" onclick="location.href='@Url.Action("DownVote", "Home")?id=@article.id'" />Down</td>
+
+                        </tr>
+                    }
+                }
+        </table>
+    </div>
+</body>
+</html>
+
