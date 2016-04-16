@@ -1,0 +1,68 @@
+﻿body {
+    padding-bottom: 20px;
+    background-color: #EEE;
+}
+
+hr{
+    border-top: 1px solid #DDD;
+}
+
+h1{
+    color:#EA804C;
+}
+
+h2{
+    color: #EA804C;
+}
+
+a{
+    color:#A69A90;
+}
+
+.header{
+    padding:30px;
+    background-color:#4A403D;
+}
+
+.header .nav-pills > li.active > a {
+    background-color:#EA804C;
+    color:black;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#articles{
+    width:800px;
+    padding: 20px;
+    margin: auto;
+    border: 2px solid #DDD;
+    border-radius:10px;
+  
+}
+
+
+tr{
+    height:60px;
+  
+    background-color:white;
+}
+
+td{
+    padding:10px;
+}
+
+
+button{
+    background-color:#EA804C;
+    border-color:#4A403D;
+}

@@ -28,10 +28,21 @@ namespace DreamJob.Models
         public void Vote(int id, int direction)
         {
             var article = context.Article.FirstOrDefault(art => art.id==id);
+            article.isVoted = true;
             if (direction ==1)
                 article.up_votes += 1;
             if (direction == -1)
                 article.down_votes += 1;
+            context.SaveChanges();
+        }
+
+        public void RenewAllVoteState()
+        {
+            List<Article> articles = ObtientTousLesArticles();
+            foreach (var article in articles)
+            {
+                article.isVoted = false;
+            }
             context.SaveChanges();
         }
 

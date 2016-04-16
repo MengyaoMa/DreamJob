@@ -26,5 +26,7 @@ namespace DreamJob.Models
 
         public int down_votes { get; set; }
 
+        public bool isVoted { get; set; }
+
     }
 }
